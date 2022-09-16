@@ -1,0 +1,55 @@
+:root {
+  --main-black: #262526;
+  --main-white: #f3f3f3;
+  --main-gray: #afb2b6;
+  --main-background: #d7d8da;
+}
+
+.container {
+  top: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--main-white);
+  position: fixed;
+  padding: 8px;
+  z-index: 2;
+  animation: slide 1s;
+}
+
+@keyframes slide {
+  from {
+    top: -50px;
+  }
+  to {
+    top: 50px;
+  }
+}
+
+.searchbar {
+  display: flex;
+  gap: 8px;
+  background-color: var(--main-background);
+}
+
+.searchbar_btn {
+  padding: 8px 16px;
+  background-color: var(--main-black);
+  color: var(--main-white);
+  border: 2px solid;
+  border-color: var(--main-black);
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.searchbar_btn:hover {
+  background-color: var(--main-white);
+  color: var(--main-black);
+}
+
+.searchbar_field {
+  border: 2px solid;
+  border-color: var(--main-black);
+  padding: 8px;
+  font-size: 14px;
+}

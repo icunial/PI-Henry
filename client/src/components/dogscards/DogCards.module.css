@@ -1,0 +1,55 @@
+:root {
+  --main-black: #262526;
+  --main-white: #f3f3f3;
+  --main-gray: #afb2b6;
+  --main-background: #d7d8da;
+}
+
+.container {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 36px;
+  width: 100%;
+  margin-top: 150px;
+  margin-bottom: 50px;
+}
+
+.dogContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  width: 80%;
+}
+
+.paginationNumbers {
+  list-style: none;
+  display: flex;
+  text-transform: uppercase;
+}
+
+.paginationNumbers li {
+  padding: 4px;
+  border: 2px solid;
+  border-color: var(--main-black);
+  cursor: pointer;
+}
+
+.paginationNumbers li:hover {
+  background-color: var(--main-black);
+  color: var(--main-white);
+}
+
+.paginationNumbers li.active {
+  padding: 4px;
+  border: 2px solid;
+  border-color: var(--main-black);
+  cursor: pointer;
+  background-color: var(--main-black);
+  color: var(--main-white);
+}

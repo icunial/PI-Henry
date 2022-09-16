@@ -1,0 +1,14 @@
+:root {
+  --main-black: #262526;
+  --main-white: #f3f3f3;
+  --main-gray: #afb2b6;
+  --main-background: #d7d8da;
+}
+
+.container {
+  overflow-y: auto;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--main-background);
+}
