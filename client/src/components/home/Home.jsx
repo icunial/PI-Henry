@@ -10,8 +10,8 @@ function Home() {
     <div className={styles.container}>
       <Navbar />
       <SearchBar />
-      <Sidebar />
       <DogCards />
+      <Sidebar />
     </div>
   );
 }

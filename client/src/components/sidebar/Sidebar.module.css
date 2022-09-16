@@ -5,15 +5,16 @@
   --main-background: #d7d8da;
 }
 
-.container {
-  position: fixed;
+.sidebarContainer {
+  position: absolute;
+  float: left;
+  width: 80px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  width: 75px;
-  height: 100%;
   background-color: var(--main-black);
+  height: 100%;
+  margin-top: 100px;
   animation: slide 1s;
 }
 
@@ -30,7 +31,7 @@
 }
 
 .itemsContainer {
-  margin-top: 24px;
+  margin: 24px 0;
   text-align: center;
   color: var(--main-gray);
   display: flex;

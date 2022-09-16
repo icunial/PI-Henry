@@ -31,7 +31,7 @@ function Sidebar() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles.sidebarContainer}>
       <div className={styles.itemsContainer}>
         <div
           className={option === "item_all" ? styles.itemSelected : styles.item}

@@ -15,6 +15,10 @@ export function validate(input) {
     errors.name = "the name must contain at least 4 characters";
   } else if (/\d/.test(input.name)) {
     errors.name = "the name can not contain numbers";
+  } else if (!/^[a-zA-Z ]+$/.test(input.name)) {
+    errors.name = "the name must contain only characters";
+  } else if (input.name.length > 15) {
+    errors.name = "the name length must be 15 character max";
   }
 
   if (!input.min_weight || !input.max_weight) {
@@ -26,6 +30,8 @@ export function validate(input) {
     errors.weight = "weight fields must contain numbers";
   } else if (Number(input.min_weight) >= Number(input.max_weight)) {
     errors.weight = "min weight must be lower than max weight";
+  } else if (Number(input.min_weight) > 150 || Number(input.max_weight) > 150) {
+    errors.weight = "your dog can not weight more than 100";
   }
 
   if (!input.min_height || !input.max_height) {
@@ -37,6 +43,8 @@ export function validate(input) {
     errors.height = "height fields must contain numbers";
   } else if (Number(input.min_height) >= Number(input.max_height)) {
     errors.height = "min height must be lower than max height";
+  } else if (Number(input.min_height) > 120 || Number(input.max_height) > 120) {
+    errors.height = "your dog can not measure more than 120";
   }
 
   if (!input.min_life_span || !input.max_life_span) {
@@ -48,6 +56,11 @@ export function validate(input) {
     errors.life_span = "life span fields must contain numbers";
   } else if (Number(input.min_life_span) >= Number(input.max_life_span)) {
     errors.life_span = "min life span must be lower than max life span";
+  } else if (
+    Number(input.min_life_span) > 25 ||
+    Number(input.max_life_span) > 25
+  ) {
+    errors.life_span = "life span can not be more than 25";
   }
 
   if (input.temperament.length === 0) {
@@ -317,7 +330,9 @@ function Form() {
             </div>
             <div className={styles.itemsContainer}>
               <input
-                className={styles.btn}
+                className={
+                  Object.keys(errors).length ? styles.btnDisabled : styles.btn
+                }
                 type="button"
                 value="Create New Dog"
                 disabled={Object.keys(errors).length}

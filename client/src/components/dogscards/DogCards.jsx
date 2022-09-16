@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import DogCard from "../dogcard/DogCard";
 import Message from "../message/Message";
 import Loading from "../loading/Loading";
+import Sidebar from "../sidebar/Sidebar";
 import styles from "./DogCards.module.css";
 import {
   getDogs,

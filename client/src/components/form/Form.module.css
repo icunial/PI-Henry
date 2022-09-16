@@ -100,6 +100,16 @@
   padding: 4px 8px;
 }
 
+.btnDisabled {
+  background-color: var(--main-gray);
+  color: var(--main-black);
+  padding: 8px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: 2px solid;
+  border-color: var(--main-gray);
+}
+
 .btn {
   background-color: var(--main-black);
   color: var(--main-white);

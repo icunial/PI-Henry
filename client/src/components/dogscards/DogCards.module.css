@@ -5,17 +5,21 @@
   --main-background: #d7d8da;
 }
 
+.globalContainer {
+  margin-top: 150px;
+  display: flex;
+  justify-content: center;
+}
+
 .container {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   display: flex;
   align-items: center;
   flex-direction: column;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 36px;
-  width: 100%;
-  margin-top: 150px;
   margin-bottom: 50px;
+  width: 80%;
 }
 
 .dogContainer {
@@ -24,7 +28,6 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 16px;
-  width: 80%;
 }
 
 .paginationNumbers {
