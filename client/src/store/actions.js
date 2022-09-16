@@ -41,7 +41,7 @@ export function setMinPageNumberLimit(page) {
 
 export function getTemperaments() {
   return function (dispatch) {
-    fetch("http://localhost:3001/temperaments")
+    fetch("/temperaments")
       .then((res) => res.json())
       .then((data) => {
         dispatch({ type: GET_TEMPERAMENTS, payload: data });
@@ -53,7 +53,7 @@ export function getTemperaments() {
 export function deleteDog(id) {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch(`http://localhost:3001/dogs/${id}`, {
+    fetch(`/dogs/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -70,7 +70,7 @@ export function deleteDog(id) {
 export function getDogs() {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch("http://localhost:3001/dogs")
+    fetch("/dogs")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_DOGS, payload: data });
@@ -82,7 +82,7 @@ export function getDogs() {
 export function getDogsFromApi() {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch("http://localhost:3001/dogs?from=api")
+    fetch("/dogs?from=api")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_DOGS_API, payload: data });
@@ -94,7 +94,7 @@ export function getDogsFromApi() {
 export function getDogsFromDb() {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch("http://localhost:3001/dogs?from=db")
+    fetch("/dogs?from=db")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_DOGS_DB, payload: data });
@@ -106,7 +106,7 @@ export function getDogsFromDb() {
 export function getDogsFromAtoZ() {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch("http://localhost:3001/dogs/filter/az")
+    fetch("/dogs/filter/az")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_DOGS_AZ, payload: data });
@@ -118,7 +118,7 @@ export function getDogsFromAtoZ() {
 export function getDogsFromZtoA() {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch("http://localhost:3001/dogs/filter/za")
+    fetch("/dogs/filter/za")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_DOGS_ZA, payload: data });
@@ -130,7 +130,7 @@ export function getDogsFromZtoA() {
 export function getDogsMoreWeight() {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch("http://localhost:3001/dogs/filter/more")
+    fetch("/dogs/filter/more")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_DOGS_MORE, payload: data });
@@ -142,7 +142,7 @@ export function getDogsMoreWeight() {
 export function getDogsLessWeight() {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch("http://localhost:3001/dogs/filter/less")
+    fetch("/dogs/filter/less")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_DOGS_LESS, payload: data });
@@ -154,7 +154,7 @@ export function getDogsLessWeight() {
 export function getDogsByName(name) {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch(`http://localhost:3001/dogs?name=${name}`)
+    fetch(`/dogs?name=${name}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_DOGS_NAME, payload: data });
@@ -166,7 +166,7 @@ export function getDogsByName(name) {
 export function getDogById(id) {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch(`http://localhost:3001/dogs/${id}`)
+    fetch(`/dogs/${id}`)
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: GET_DOG_ID, payload: data[0] });
@@ -192,7 +192,7 @@ export function loading(payload) {
 export function createDog(data) {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });
-    fetch(`http://localhost:3001/dogs`, {
+    fetch(`/dogs`, {
       method: "POST",
       body: JSON.stringify(data),
       headers: {

@@ -8,9 +8,9 @@ const router = Router();
 
 // Configurar los routers
 // Ejemplo: router.use('/auth', authRouter);
-router.get("/", (req, res) => {
+/* router.get("/", (req, res) => {
   res.send("The server is up!");
-});
+}); */
 
 router.use("/dogs", dogsRouter);
 router.use("/temperaments", temperamentsRouter);

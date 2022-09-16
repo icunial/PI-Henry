@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/static/css/main.9efc6c86.chunk.css",
+    "main.js": "/static/js/main.38848447.chunk.js",
+    "main.js.map": "/static/js/main.38848447.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.3915588e.js",
+    "runtime-main.js.map": "/static/js/runtime-main.3915588e.js.map",
+    "static/js/2.2c23daab.chunk.js": "/static/js/2.2c23daab.chunk.js",
+    "static/js/2.2c23daab.chunk.js.map": "/static/js/2.2c23daab.chunk.js.map",
+    "static/js/3.81094cd8.chunk.js": "/static/js/3.81094cd8.chunk.js",
+    "static/js/3.81094cd8.chunk.js.map": "/static/js/3.81094cd8.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.9efc6c86.chunk.css.map": "/static/css/main.9efc6c86.chunk.css.map",
+    "static/js/2.2c23daab.chunk.js.LICENSE.txt": "/static/js/2.2c23daab.chunk.js.LICENSE.txt",
+    "static/media/DogCard.module.css": "/static/media/dog-icon.e4d44351.jpg",
+    "static/media/github.01dfce50.png": "/static/media/github.01dfce50.png",
+    "static/media/Landpage.module.css": "/static/media/loadingPageImage.49c07699.jpeg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.3915588e.js",
+    "static/js/2.2c23daab.chunk.js",
+    "static/css/main.9efc6c86.chunk.css",
+    "static/js/main.38848447.chunk.js"
+  ]
+}
