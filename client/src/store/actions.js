@@ -22,6 +22,7 @@ export const GET_DOGS_TEMPERAMENT = "GET DOGS TEMPERAMENT";
 
 export function getDogsByTemperament(temperament) {
   return function (dispatch) {
+    dispatch({ type: LOADING, payload: true });
     fetch(`/dogs?temperament=${temperament}`)
       .then((res) => res.json())
       .then((data) => {

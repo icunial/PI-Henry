@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createDog, getTemperaments } from "../../store/actions";
+import { createDog } from "../../store/actions";
 import Loading from "../loading/Loading";
 import Navbar from "../navbar/Navbar";
 
@@ -136,10 +136,6 @@ function Form() {
   const showModal = () => {
     setModal(true);
   };
-
-  useEffect(() => {
-    dispatch(getTemperaments());
-  }, [dispatch]);
 
   return loading ? (
     <Loading />

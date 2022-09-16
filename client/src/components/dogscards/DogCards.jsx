@@ -116,7 +116,7 @@ function DogCards() {
       {loading ? (
         <Loading />
       ) : typeof dogs === "string" ? (
-        <Message text={dogs} />
+        <Message className={styles.messsage} text={dogs} />
       ) : (
         <div className={styles.container}>
           <ul className={styles.paginationNumbers}>
