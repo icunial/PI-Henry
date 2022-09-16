@@ -7,7 +7,8 @@ export const GET_DOGS_NAME = "GET DOGS NAME";
 export const GET_DOG_ID = "GET DOGS ID";
 export const GET_DOGS_MORE = "GET DOGS MORE";
 export const GET_DOGS_LESS = "GET DOGS LESS";
-export const CHANGE_OPTION_FILTER = "CHANGE_OPTION_FILTER";
+export const CHANGE_OPTION_FILTER = "CHANGE OPTION FILTER";
+export const CHANGE_VALUE_FILTER = "CHANGE VALUE FILTER";
 export const LOADING = "LOADING";
 export const CREATE_DOG = "CREATE DOG";
 export const GET_TEMPERAMENTS = "GET TEMPERAMENTS";
@@ -192,6 +193,13 @@ export function getDogById(id) {
 export function changeOptionFilter(payload) {
   return {
     type: CHANGE_OPTION_FILTER,
+    payload,
+  };
+}
+
+export function changeValueFilter(payload) {
+  return {
+    type: CHANGE_VALUE_FILTER,
     payload,
   };
 }

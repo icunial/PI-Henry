@@ -17,6 +17,7 @@ import {
   setCurrentPage,
   setMaxPageNumberLimit,
   setMinPageNumberLimit,
+  getDogsByTemperament,
 } from "../../store/actions";
 
 function DogCards() {
@@ -24,13 +25,11 @@ function DogCards() {
   const dogs = useSelector((state) => state.dogs);
   const loading = useSelector((state) => state.loading);
   const option = useSelector((state) => state.option);
+  const valueFilter = useSelector((state) => state.valueFilter);
 
   const currentPage = useSelector((state) => state.currentPage);
   const maxPageNumberLimit = useSelector((state) => state.maxPageNumberLimit);
   const minPageNumberLimit = useSelector((state) => state.minPageNumberLimit);
-  /* 
-  const [itemsPerPage, setItemsPerPage] = useState(8);
-  const [pageNumberLimit, setPageNumberLimit] = useState(5); */
 
   const itemsPerPage = 8;
   const pageNumberLimit = 5;
@@ -105,9 +104,11 @@ function DogCards() {
       case "item_less":
         dispatch(getDogsLessWeight());
         break;
-      default:
-        dispatch(getDogsByName(option));
+      case "name":
+        dispatch(getDogsByName(valueFilter));
         break;
+      case "temperament":
+        dispatch(getDogsByTemperament(valueFilter));
     }
   }, [dispatch]);
 

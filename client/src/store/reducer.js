@@ -17,12 +17,14 @@ import {
   SET_MIN_PAGE,
   DELETE_DOG,
   GET_DOGS_TEMPERAMENT,
+  CHANGE_VALUE_FILTER,
 } from "./actions";
 
 const initialState = {
   dogs: [],
   dog: {},
   option: "item_all",
+  valueFilter: "",
   loading: false,
   newDog: [],
   temperaments: [],
@@ -53,6 +55,8 @@ export default function reducer(state = initialState, action) {
       return { ...state, dog: action.payload };
     case CHANGE_OPTION_FILTER:
       return { ...state, option: action.payload };
+    case CHANGE_VALUE_FILTER:
+      return { ...state, valueFilter: action.payload };
     case LOADING:
       return { ...state, loading: action.payload };
     case CREATE_DOG:

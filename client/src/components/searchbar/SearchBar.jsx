@@ -7,6 +7,7 @@ import {
   getDogsByName,
   getTemperaments,
   getDogsByTemperament,
+  changeValueFilter,
 } from "../../store/actions";
 import {
   changeOptionFilter,
@@ -39,10 +40,11 @@ function SearchBar() {
         className={styles.searchbar}
         onSubmit={(e) => {
           e.preventDefault();
-          setName("");
           setInitialState();
-          dispatch(changeOptionFilter(""));
+          dispatch(changeOptionFilter("name"));
+          dispatch(changeValueFilter(name));
           dispatch(getDogsByName(name));
+          setName("");
         }}
       >
         <input
@@ -65,7 +67,8 @@ function SearchBar() {
               value={t.name}
               onClick={(e) => {
                 setInitialState();
-                dispatch(changeOptionFilter(""));
+                dispatch(changeOptionFilter("temperament"));
+                dispatch(changeValueFilter(t.name));
                 dispatch(getDogsByTemperament(t.name));
               }}
             >
