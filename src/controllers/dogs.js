@@ -294,6 +294,63 @@ const deleteDogFromDbById = async (id) => {
   }
 };
 
+const findByTemperamentApi = async (temp) => {
+  let results = [];
+  try {
+    const apiResults = await axios.get(`https://api.thedogapi.com/v1/breeds`);
+    if (apiResults) {
+      apiResults.data.forEach((r) => {
+        results.push({
+          id: r.id,
+          name: r.name,
+          image: r.image.url,
+          temperament: r.temperament
+            ? convertTemperamentsToArray(r.temperament)
+            : [],
+          weight: r.weight.metric,
+        });
+      });
+    }
+
+    results = results.filter((r) => {
+      return r.temperament.includes(temp);
+    });
+
+    return results;
+  } catch (error) {
+    throw new Error(
+      "Error trying to get all dogs by their temperament from API"
+    );
+  }
+};
+
+const findByTemperamentDb = async (temp) => {
+  let results = [];
+  try {
+    const dbResults = await Dog.findAll({
+      attributes: ["id", "name", "image", "weight"],
+      include: Temperament,
+    });
+    dbResults.forEach((r) => {
+      results.push({
+        id: r.id,
+        name: r.name,
+        image: r.image,
+        temperament: r.temperaments.map((t) => t.name),
+        weight: r.weight,
+      });
+    });
+
+    results = results.filter((r) => {
+      return r.temperament.includes(temp);
+    });
+
+    return results;
+  } catch (error) {
+    throw new Error("Error trying to get all dogs from DB");
+  }
+};
+
 module.exports = {
   findByNameApi,
   findByNameDb,
@@ -306,4 +363,6 @@ module.exports = {
   orderDogsMoreWeight,
   orderDogsLessWeight,
   deleteDogFromDbById,
+  findByTemperamentApi,
+  findByTemperamentDb,
 };

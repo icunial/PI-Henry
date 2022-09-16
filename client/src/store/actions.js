@@ -18,6 +18,19 @@ export const SET_MAX_PAGE = "SET MAX PAGE";
 
 export const DELETE_DOG = "DELETE DOG";
 
+export const GET_DOGS_TEMPERAMENT = "GET DOGS TEMPERAMENT";
+
+export function getDogsByTemperament(temperament) {
+  return function (dispatch) {
+    fetch(`/dogs?temperament=${temperament}`)
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: GET_DOGS_TEMPERAMENT, payload: data });
+        dispatch({ type: LOADING, payload: false });
+      });
+  };
+}
+
 export function setCurrentPage(page) {
   return {
     type: SET_CURRENT_PAGE,

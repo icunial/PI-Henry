@@ -16,6 +16,7 @@ import {
   SET_MAX_PAGE,
   SET_MIN_PAGE,
   DELETE_DOG,
+  GET_DOGS_TEMPERAMENT,
 } from "./actions";
 
 const initialState = {
@@ -69,6 +70,8 @@ export default function reducer(state = initialState, action) {
         ...state,
         dogs: state.dogs.filter((dog) => dog.id !== action.payload),
       };
+    case GET_DOGS_TEMPERAMENT:
+      return { ...state, dogs: action.payload };
     default:
       return state;
   }

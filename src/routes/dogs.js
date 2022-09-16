@@ -25,7 +25,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const { name, from } = req.query;
+  const { name, from, temperament } = req.query;
 
   try {
     if (name) {
@@ -34,6 +34,14 @@ router.get("/", async (req, res) => {
       const results = dbResults.concat(apiResults);
       if (!results.length)
         return res.status(200).json(`Dog with name ${name} not found!`);
+
+      return res.status(200).json(results);
+    }
+
+    if (temperament) {
+      const apiResults = await dogController.findByTemperamentApi(temperament);
+      const dbResults = await dogController.findByTemperamentDb(temperament);
+      const results = dbResults.concat(apiResults);
 
       return res.status(200).json(results);
     }
