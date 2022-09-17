@@ -6,9 +6,10 @@
 }
 
 .globalContainer {
-  margin-top: 150px;
   display: flex;
   justify-content: center;
+  margin-top: 7rem;
+  opacity: 100;
 }
 
 .container {
@@ -17,9 +18,10 @@
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  gap: 36px;
-  margin-bottom: 50px;
-  width: 80%;
+  gap: 2rem;
+  margin-left: 5rem;
+  margin-bottom: 4rem;
+  width: 90%;
 }
 
 .dogContainer {
@@ -27,17 +29,18 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 16px;
+  gap: 1rem;
 }
 
 .paginationNumbers {
   list-style: none;
   display: flex;
   text-transform: uppercase;
+  gap: 0.5rem;
 }
 
 .paginationNumbers li {
-  padding: 4px;
+  padding: 0.5rem;
   border: 2px solid;
   border-color: var(--main-black);
   cursor: pointer;
@@ -49,10 +52,58 @@
 }
 
 .paginationNumbers li.active {
-  padding: 4px;
+  padding: 0.5rem;
   border: 2px solid;
   border-color: var(--main-black);
   cursor: pointer;
   background-color: var(--main-black);
   color: var(--main-white);
+}
+
+.modalContainer {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 50%);
+  z-index: 999;
+  top: 0;
+}
+
+.modal {
+  text-align: center;
+  width: 300px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  background-color: var(--main-white);
+  box-shadow: 2px 2px 10px black;
+  padding: 8px;
+}
+
+.modal p {
+  text-transform: uppercase;
+}
+
+.modal button {
+  background-color: var(--main-black);
+  color: var(--main-white);
+  text-transform: uppercase;
+  width: 100%;
+  padding: 8px;
+  cursor: pointer;
+  border: 2px solid;
+  border-color: var(--main-black);
+}
+
+.modal button:hover {
+  background-color: var(--main-white);
+  color: var(--main-black);
 }

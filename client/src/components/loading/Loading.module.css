@@ -20,21 +20,20 @@
 }
 
 .modal {
-  width: 300px;
-  height: 100px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: var(--main-white);
-  padding: 8px;
-  box-shadow: 2px 2px 10px black;
+  border: 0.5rem solid;
+  border-color: var(--main-white);
+  border-radius: 50%;
+  border-top: 0.5rem solid var(--main-black);
+  width: 4rem;
+  height: 4rem;
+  animation: spin 0.5s linear infinite;
 }
 
-.modal img {
-  width: 100px;
-}
-
-.modal p {
-  text-transform: uppercase;
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }

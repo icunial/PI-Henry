@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DogCard from "../dogcard/DogCard";
-import Message from "../message/Message";
 import Loading from "../loading/Loading";
-import Sidebar from "../sidebar/Sidebar";
 import styles from "./DogCards.module.css";
 import {
   getDogs,
@@ -15,10 +13,19 @@ import {
   getDogsMoreWeight,
   getDogsByName,
   setCurrentPage,
-  setMaxPageNumberLimit,
-  setMinPageNumberLimit,
   getDogsByTemperament,
 } from "../../store/actions";
+
+const Modal = (props) => {
+  return (
+    <div className={styles.modalContainer}>
+      <div className={styles.modal}>
+        <p>{props.message}</p>
+        <button onClick={props.onClose}>Accept</button>
+      </div>
+    </div>
+  );
+};
 
 function DogCards() {
   const dispatch = useDispatch();
@@ -28,11 +35,8 @@ function DogCards() {
   const valueFilter = useSelector((state) => state.valueFilter);
 
   const currentPage = useSelector((state) => state.currentPage);
-  const maxPageNumberLimit = useSelector((state) => state.maxPageNumberLimit);
-  const minPageNumberLimit = useSelector((state) => state.minPageNumberLimit);
 
   const itemsPerPage = 8;
-  const pageNumberLimit = 5;
 
   const pages = [];
   for (let i = 1; i <= Math.ceil(dogs.length / itemsPerPage); i++) {
@@ -49,36 +53,22 @@ function DogCards() {
 
   const handleNextBtn = () => {
     dispatch(setCurrentPage(currentPage + 1));
-
-    if (currentPage + 1 > maxPageNumberLimit) {
-      dispatch(setMaxPageNumberLimit(maxPageNumberLimit + pageNumberLimit));
-      dispatch(setMinPageNumberLimit(minPageNumberLimit + pageNumberLimit));
-    }
   };
   const handlePrevBtn = () => {
     dispatch(setCurrentPage(currentPage - 1));
-
-    if ((currentPage - 1) % pageNumberLimit === 0) {
-      dispatch(setMaxPageNumberLimit(maxPageNumberLimit - pageNumberLimit));
-      dispatch(setMinPageNumberLimit(minPageNumberLimit - pageNumberLimit));
-    }
   };
 
   const renderPageNumbers = pages.map((number) => {
-    if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
-      return (
-        <li
-          key={number}
-          id={number}
-          onClick={handleClick}
-          className={currentPage === number ? styles.active : null}
-        >
-          {number}
-        </li>
-      );
-    } else {
-      return null;
-    }
+    return (
+      <li
+        key={number}
+        id={number}
+        onClick={handleClick}
+        className={currentPage === number ? styles.active : null}
+      >
+        {number}
+      </li>
+    );
   });
 
   useEffect(() => {
@@ -112,12 +102,22 @@ function DogCards() {
     }
   }, [dispatch]);
 
+  const [modal, setModal] = useState(true);
+
+  const closeModal = () => {
+    setModal(false);
+  };
+
+  const showModal = () => {
+    setModal(true);
+  };
+
   return (
     <div className={styles.globalContainer}>
       {loading ? (
         <Loading />
       ) : typeof dogs === "string" ? (
-        <Message className={styles.messsage} text={dogs} />
+        modal && <Modal message={dogs} onClose={closeModal} />
       ) : (
         <div className={styles.container}>
           <ul className={styles.paginationNumbers}>
@@ -130,6 +130,7 @@ function DogCards() {
           <div className={styles.dogContainer}>
             {currentItems.map((dog) => (
               <DogCard
+                className={styles.dogCard}
                 key={dog.id}
                 id={dog.id}
                 name={dog.name}

@@ -10,7 +10,9 @@ function Home() {
     <div className={styles.container}>
       <Navbar />
       <SearchBar />
-      <DogCards />
+      <div className={styles.dogCardsContainer}>
+        <DogCards />
+      </div>
       <Sidebar />
     </div>
   );

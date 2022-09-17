@@ -14,8 +14,6 @@ export const CREATE_DOG = "CREATE DOG";
 export const GET_TEMPERAMENTS = "GET TEMPERAMENTS";
 
 export const SET_CURRENT_PAGE = "SET CURRENT PAGE";
-export const SET_MIN_PAGE = "SET MIN PAGE";
-export const SET_MAX_PAGE = "SET MAX PAGE";
 
 export const DELETE_DOG = "DELETE DOG";
 
@@ -36,20 +34,6 @@ export function getDogsByTemperament(temperament) {
 export function setCurrentPage(page) {
   return {
     type: SET_CURRENT_PAGE,
-    payload: page,
-  };
-}
-
-export function setMaxPageNumberLimit(page) {
-  return {
-    type: SET_MAX_PAGE,
-    payload: page,
-  };
-}
-
-export function setMinPageNumberLimit(page) {
-  return {
-    type: SET_MIN_PAGE,
     payload: page,
   };
 }

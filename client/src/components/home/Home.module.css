@@ -6,9 +6,12 @@
 }
 
 .container {
-  overflow-y: auto;
   height: 100%;
   display: flex;
   flex-direction: column;
   background-color: var(--main-background);
+}
+
+.dogCardsContainer {
+  overflow-y: auto;
 }

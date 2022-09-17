@@ -142,7 +142,7 @@ function Form() {
   ) : (
     <div className={styles.globalContainer}>
       <Navbar />
-      {modal && <Modal onClose={closeModal} />}(
+      {modal && <Modal onClose={closeModal} />}
       <div className={styles.container}>
         <div className={styles.formContainer}>
           <div className={styles.headerContainer}>

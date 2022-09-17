@@ -13,8 +13,6 @@ import {
   CREATE_DOG,
   GET_TEMPERAMENTS,
   SET_CURRENT_PAGE,
-  SET_MAX_PAGE,
-  SET_MIN_PAGE,
   DELETE_DOG,
   GET_DOGS_TEMPERAMENT,
   CHANGE_VALUE_FILTER,
@@ -29,8 +27,6 @@ const initialState = {
   newDog: [],
   temperaments: [],
   currentPage: 1,
-  maxPageNumberLimit: 5,
-  minPageNumberLimit: 0,
 };
 
 export default function reducer(state = initialState, action) {
@@ -65,10 +61,6 @@ export default function reducer(state = initialState, action) {
       return { ...state, temperaments: action.payload };
     case SET_CURRENT_PAGE:
       return { ...state, currentPage: action.payload };
-    case SET_MAX_PAGE:
-      return { ...state, maxPageNumberLimit: action.payload };
-    case SET_MIN_PAGE:
-      return { ...state, minPageNumberLimit: action.payload };
     case DELETE_DOG:
       return {
         ...state,

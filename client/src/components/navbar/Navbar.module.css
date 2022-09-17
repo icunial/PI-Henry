@@ -5,30 +5,30 @@
   --main-background: #d7d8da;
 }
 
-.nav {
-  position: fixed;
-  top: 0px;
+.globalContainer {
+  position: absolute;
+  top: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   width: 100%;
-  height: 50px;
   display: flex;
-  align-items: center;
   justify-content: center;
   background-color: var(--main-white);
-  z-index: 3;
-  animation: slide 1s;
+  padding: 1rem 0;
+  height: 1rem;
+  animation: slideDown 0.5s;
+  z-index: 5;
 }
 
-@keyframes slide {
+@keyframes slideDown {
   from {
     top: -100px;
   }
   to {
-    top: 0px;
+    top: 0;
   }
 }
 
-.navContent {
+.container {
   width: 80%;
   display: flex;
   flex-direction: row;
@@ -37,25 +37,23 @@
 }
 
 .title {
-  margin-left: 16px;
-  font-size: 24px;
+  font-size: 1.5rem;
   color: var(--main-black);
 }
 
 .links {
-  margin-right: 16px;
   display: flex;
-  gap: 16px;
+  gap: 1.5rem;
 }
 
 .link {
   text-decoration: none;
-  padding: 8px;
+  padding: 0.5rem;
   cursor: pointer;
   border: 2px solid;
   border-color: var(--main-black);
   color: var(--main-black);
-  font-size: 14px;
+  font-size: 1rem;
 }
 
 .link:hover {

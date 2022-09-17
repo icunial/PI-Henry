@@ -3,12 +3,7 @@ import styles from "./Sidebar.module.css";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import {
-  changeOptionFilter,
-  setCurrentPage,
-  setMaxPageNumberLimit,
-  setMinPageNumberLimit,
-} from "../../store/actions";
+import { changeOptionFilter, setCurrentPage } from "../../store/actions";
 
 import {
   getDogs,
@@ -24,12 +19,6 @@ function Sidebar() {
   const dispatch = useDispatch();
   const option = useSelector((state) => state.option);
 
-  const setInitialState = () => {
-    dispatch(setCurrentPage(1));
-    dispatch(setMaxPageNumberLimit(5));
-    dispatch(setMinPageNumberLimit(0));
-  };
-
   return (
     <div className={styles.sidebarContainer}>
       <div className={styles.itemsContainer}>
@@ -39,7 +28,7 @@ function Sidebar() {
           onClick={(e) => {
             if (option !== e.currentTarget.id) {
               dispatch(changeOptionFilter(e.currentTarget.id));
-              setInitialState();
+              dispatch(setCurrentPage(1));
               dispatch(getDogs());
             }
           }}
@@ -47,14 +36,13 @@ function Sidebar() {
           <div className={styles.itemTitle}>ALL</div>
           <div className={styles.itemDescription}>Get ALL</div>
         </div>
-        <hr className={styles.hr} />
         <div
           className={option === "item_api" ? styles.itemSelected : styles.item}
           id="item_api"
           onClick={(e) => {
             if (option !== e.currentTarget.id) {
               dispatch(changeOptionFilter(e.currentTarget.id));
-              setInitialState();
+              dispatch(setCurrentPage(1));
               dispatch(getDogsFromApi());
             }
           }}
@@ -68,7 +56,7 @@ function Sidebar() {
           onClick={(e) => {
             if (option !== e.currentTarget.id) {
               dispatch(changeOptionFilter(e.currentTarget.id));
-              setInitialState();
+              dispatch(setCurrentPage(1));
               dispatch(getDogsFromDb());
             }
           }}
@@ -76,14 +64,14 @@ function Sidebar() {
           <div className={styles.itemTitle}>DB</div>
           <div className={styles.itemDescription}>From DB</div>
         </div>
-        <hr className={styles.hr} />
+
         <div
           className={option === "item_az" ? styles.itemSelected : styles.item}
           id="item_az"
           onClick={(e) => {
             if (option !== e.currentTarget.id) {
               dispatch(changeOptionFilter(e.currentTarget.id));
-              setInitialState();
+              dispatch(setCurrentPage(1));
               dispatch(getDogsFromAtoZ());
             }
           }}
@@ -97,7 +85,7 @@ function Sidebar() {
           onClick={(e) => {
             if (option !== e.currentTarget.id) {
               dispatch(changeOptionFilter(e.currentTarget.id));
-              setInitialState();
+              dispatch(setCurrentPage(1));
               dispatch(getDogsFromZtoA());
             }
           }}
@@ -105,14 +93,14 @@ function Sidebar() {
           <div className={styles.itemTitle}>Z-A</div>
           <div className={styles.itemDescription}>From Z to A</div>
         </div>
-        <hr className={styles.hr} />
+
         <div
           className={option === "item_more" ? styles.itemSelected : styles.item}
           id="item_more"
           onClick={(e) => {
             if (option !== e.currentTarget.id) {
               dispatch(changeOptionFilter(e.currentTarget.id));
-              setInitialState();
+              dispatch(setCurrentPage(1));
               dispatch(getDogsMoreWeight());
             }
           }}
@@ -126,7 +114,7 @@ function Sidebar() {
           onClick={(e) => {
             if (option !== e.currentTarget.id) {
               dispatch(changeOptionFilter(e.currentTarget.id));
-              setInitialState();
+              dispatch(setCurrentPage(1));
               dispatch(getDogsLessWeight());
             }
           }}
