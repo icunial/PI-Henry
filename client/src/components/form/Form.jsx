@@ -39,7 +39,7 @@ export function validate(input) {
   if (!input.min_height || !input.max_height) {
     errors.height = "you must enter the height of your dog";
   } else if (Number(input.min_height) <= 0 || Number(input.max_height) <= 0) {
-    errors.weight = "height must be more than 0";
+    errors.height = "height must be more than 0";
   } else if (
     !/^[0-9]+$/.test(input.min_height) ||
     !/^[0-9]+$/.test(input.max_height)
@@ -57,7 +57,7 @@ export function validate(input) {
     Number(input.min_life_span) <= 0 ||
     Number(input.max_life_span) <= 0
   ) {
-    errors.weight = "life span must be more than 0";
+    errors.life_span = "life span must be more than 0";
   } else if (
     !/^[0-9]+$/.test(input.min_life_span) ||
     !/^[0-9]+$/.test(input.max_life_span)
