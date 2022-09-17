@@ -14,6 +14,37 @@ import { changeOptionFilter, setCurrentPage } from "../../store/actions";
 
 import styles from "./SearchBar.module.css";
 
+const DropDown = (props) => {
+  return (
+    <div className={styles.dropdown}>
+      <div className={styles.dropdownBtn} onClick={() => props.onClick()}>
+        Filter By Temperament
+      </div>
+      {props.isOpen && (
+        <div className={styles.dropdownContent}>
+          {props.temperaments.map((t) => {
+            return (
+              <div
+                className={styles.dropdownItem}
+                key={t.name}
+                onClick={(e) => {
+                  props.dispatch(setCurrentPage(1));
+                  props.dispatch(changeOptionFilter("temperament"));
+                  props.dispatch(changeValueFilter(t.name));
+                  props.dispatch(getDogsByTemperament(t.name));
+                  props.onClick();
+                }}
+              >
+                {t.name}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
 function SearchBar() {
   const [name, setName] = useState("");
   const dispatch = useDispatch();
@@ -23,6 +54,12 @@ function SearchBar() {
   useEffect(() => {
     dispatch(getTemperaments());
   }, [dispatch]);
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openDropDown = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div className={styles.globalContainer}>
@@ -51,8 +88,15 @@ function SearchBar() {
             value="Search"
           />
         </form>
-        <div>
-          <select className={styles.select} name="temperamentsFromApi">
+        {
+          <DropDown
+            isOpen={isOpen}
+            onClick={openDropDown}
+            temperaments={temperaments}
+            dispatch={dispatch}
+          />
+        }
+        {/* <select className={styles.select} name="temperamentsFromApi">
             <option selected disabled>
               Select at least one temperament
             </option>
@@ -72,8 +116,7 @@ function SearchBar() {
                 </option>
               );
             })}
-          </select>
-        </div>
+          </select> */}
       </div>
     </div>
   );
