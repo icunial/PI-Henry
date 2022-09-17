@@ -32,40 +32,42 @@ function DogDetail() {
             style={dog.image && divImage}
           ></div>
           <div className={styles.contentContainer}>
-            <div className={styles.dogName}>{dog.name}</div>
-            <div className={styles.physicalContent}>
-              <div className={styles.physicalItem}>
-                <p className={styles.physicalTitle}>Weight</p>
-                <p className={styles.physicalData}>{dog.weight}</p>
+            <div>
+              <div className={styles.dogName}>{dog.name}</div>
+              <div className={styles.physicalContent}>
+                <div className={styles.physicalItem}>
+                  <p className={styles.physicalTitle}>Weight</p>
+                  <p className={styles.physicalData}>{dog.weight}</p>
+                </div>
+                <div className={styles.physicalItem}>
+                  <p className={styles.physicalTitle}>Height</p>
+                  <p className={styles.physicalData}>{dog.height}</p>
+                </div>
+                <div className={styles.physicalItem}>
+                  <p className={styles.physicalTitle}>Life Span</p>
+                  <p className={styles.physicalData}>{dog.life_span}</p>
+                </div>
               </div>
-              <div className={styles.physicalItem}>
-                <p className={styles.physicalTitle}>Height</p>
-                <p className={styles.physicalData}>{dog.height}</p>
+              <div className={styles.otherContent}>
+                <div className={styles.titleContent}>Temperaments</div>
+                <div className={styles.temperamentContent}>
+                  {dog.temperament.map((t) => {
+                    return <span>{t}</span>;
+                  })}
+                </div>
               </div>
-              <div className={styles.physicalItem}>
-                <p className={styles.physicalTitle}>Life Span</p>
-                <p className={styles.physicalData}>{dog.life_span}</p>
+              <div className={styles.otherContent}>
+                <div className={styles.titleContent}>Origin</div>
+                <div className={styles.dataContent}>NOT SPECIFIED</div>
               </div>
-            </div>
-            <div className={styles.otherContent}>
-              <div className={styles.titleContent}>Temperaments</div>
-              <div className={styles.temperamentContent}>
-                {dog.temperament.map((t) => {
-                  return <span>{t}</span>;
-                })}
+              <div className={styles.otherContent}>
+                <div className={styles.titleContent}>Bred For</div>
+                <div className={styles.dataContent}>NOT SPECIFIED</div>
               </div>
-            </div>
-            <div className={styles.otherContent}>
-              <div className={styles.titleContent}>Origin</div>
-              <div className={styles.dataContent}>NOT SPECIFIED</div>
-            </div>
-            <div className={styles.otherContent}>
-              <div className={styles.titleContent}>Bred For</div>
-              <div className={styles.dataContent}>NOT SPECIFIED</div>
-            </div>
-            <div className={styles.otherContent}>
-              <div className={styles.titleContent}>Breed Group</div>
-              <div className={styles.dataContent}>NOT SPECIFIED</div>
+              <div className={styles.otherContent}>
+                <div className={styles.titleContent}>Breed Group</div>
+                <div className={styles.dataContent}>NOT SPECIFIED</div>
+              </div>
             </div>
             {dog.id.toString().includes("-") ? (
               <button

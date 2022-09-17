@@ -325,12 +325,11 @@ function Form() {
               </div>
             </div>
             <div className={styles.itemsContainer}>
-              <input
+              <button
                 className={
                   Object.keys(errors).length ? styles.btnDisabled : styles.btn
                 }
                 type="button"
-                value="Create New Dog"
                 disabled={Object.keys(errors).length}
                 onClick={(e) => {
                   e.preventDefault();
@@ -348,7 +347,9 @@ function Form() {
                   showModal();
                   clearInputs();
                 }}
-              ></input>
+              >
+                Create new dog
+              </button>
             </div>
           </form>
         </div>
