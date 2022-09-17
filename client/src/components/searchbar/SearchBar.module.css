@@ -78,6 +78,7 @@
 }
 
 .select {
+  position: relative;
   border: 2px solid;
   border-color: var(--main-black);
   background-color: var(--main-white);
