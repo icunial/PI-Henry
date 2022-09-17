@@ -96,27 +96,6 @@ function SearchBar() {
             dispatch={dispatch}
           />
         }
-        {/* <select className={styles.select} name="temperamentsFromApi">
-            <option selected disabled>
-              Select at least one temperament
-            </option>
-            {temperaments.map((t) => {
-              return (
-                <option
-                  key={t.name}
-                  value={t.name}
-                  onClick={(e) => {
-                    dispatch(setCurrentPage(1));
-                    dispatch(changeOptionFilter("temperament"));
-                    dispatch(changeValueFilter(t.name));
-                    dispatch(getDogsByTemperament(t.name));
-                  }}
-                >
-                  {t.name}
-                </option>
-              );
-            })}
-          </select> */}
       </div>
     </div>
   );

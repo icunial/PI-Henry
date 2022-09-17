@@ -81,6 +81,45 @@ const Modal = (props) => {
   );
 };
 
+const DropDown = (props) => {
+  return (
+    <div className={styles.dropdown}>
+      <div className={styles.dropdownBtn} onClick={() => props.onClick()}>
+        Select at least one temperament from the list...
+      </div>
+      {props.isOpen && (
+        <div className={styles.dropdownContent}>
+          {props.temperaments.map((t) => {
+            return (
+              <div
+                className={styles.dropdownItem}
+                key={t.name}
+                onClick={(e) => {
+                  if (!props.input.temperament.includes(t.name)) {
+                    props.setInput((input) => {
+                      const newInput = {
+                        ...input,
+                        temperament: [...input.temperament, t.name],
+                      };
+                      const errors = validate(newInput);
+                      props.setErrors(errors);
+
+                      return newInput;
+                    });
+                  }
+                  props.onClick();
+                }}
+              >
+                {t.name}
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+};
+
 function Form() {
   const dispatch = useDispatch();
 
@@ -101,8 +140,18 @@ function Form() {
   const [errors, setErrors] = useState({ initialState: "" });
   const [modal, setModal] = useState(false);
 
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openDropDown = () => {
+    setIsOpen(!isOpen);
+  };
+
   const closeModal = () => {
     setModal(false);
+  };
+
+  const showModal = () => {
+    setModal(true);
   };
 
   const handleInputChange = (e) => {
@@ -131,10 +180,6 @@ function Form() {
       temperament: [],
       temperaments: [],
     });
-  };
-
-  const showModal = () => {
-    setModal(true);
   };
 
   return loading ? (
@@ -257,38 +302,16 @@ function Form() {
               <label className={styles.itemsTitle}>Temperament</label>
               <div>
                 <div className={styles.itemContent}>
-                  <select name="temperamentsFromApi" className={styles.item}>
-                    <option selected disabled>
-                      Select at least one temperament
-                    </option>
-                    {temperaments.map((t) => {
-                      return (
-                        <option
-                          key={t.name}
-                          value={t.name}
-                          onClick={(e) => {
-                            if (!input.temperament.includes(e.target.value)) {
-                              setInput((input) => {
-                                const newInput = {
-                                  ...input,
-                                  temperament: [
-                                    ...input.temperament,
-                                    e.target.value,
-                                  ],
-                                };
-                                const errors = validate(newInput);
-                                setErrors(errors);
-
-                                return newInput;
-                              });
-                            }
-                          }}
-                        >
-                          {t.name}
-                        </option>
-                      );
-                    })}
-                  </select>
+                  {
+                    <DropDown
+                      temperaments={temperaments}
+                      isOpen={isOpen}
+                      onClick={openDropDown}
+                      input={input}
+                      setInput={setInput}
+                      setErrors={setErrors}
+                    />
+                  }
                 </div>
               </div>
               <div className={styles.temperaments}>
