@@ -15,8 +15,5 @@ const router = Router();
 
 router.use("/dogs", dogsRouter);
 router.use("/temperaments", temperamentsRouter);
-router.use("*", (req, res) => {
-  res.sendFile("../../client/build/index.html");
-});
 
 module.exports = router;

@@ -105,8 +105,7 @@
 
 .dropdownItem {
   cursor: pointer;
-  padding: 1rem 0;
-  margin-left: 1rem;
+  padding: 1rem 0.5rem;
 }
 
 .dropdownItem:hover {
