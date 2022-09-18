@@ -23,11 +23,11 @@ export function validate(input) {
 
   if (!input.min_weight || !input.max_weight) {
     errors.weight = "you must enter the weight of your dog";
-  } else if (Number(input.min_weight) >= Number(input.max_weight)) {
-    errors.weight = "min weight must be lower than max weight";
   } else if (Number(input.min_weight) <= 0 || Number(input.max_weight) <= 0) {
     errors.weight = "weight must be more than 0";
-  } else if (Number(input.min_weight) > 150 || Number(input.max_weight) > 150) {
+  } else if (Number(input.min_weight) >= Number(input.max_weight)) {
+    errors.weight = "min weight must be lower than max weight";
+  } else if (Number(input.min_weight) > 100 || Number(input.max_weight) > 100) {
     errors.weight = "your dog can not weight more than 100";
   } else if (
     !/^[0-9]+$/.test(input.min_weight) ||
@@ -40,15 +40,15 @@ export function validate(input) {
     errors.height = "you must enter the height of your dog";
   } else if (Number(input.min_height) <= 0 || Number(input.max_height) <= 0) {
     errors.height = "height must be more than 0";
+  } else if (Number(input.min_height) >= Number(input.max_height)) {
+    errors.height = "min height must be lower than max height";
+  } else if (Number(input.min_height) > 120 || Number(input.max_height) > 120) {
+    errors.height = "your dog can not measure more than 120";
   } else if (
     !/^[0-9]+$/.test(input.min_height) ||
     !/^[0-9]+$/.test(input.max_height)
   ) {
     errors.height = "height fields must contain numbers";
-  } else if (Number(input.min_height) >= Number(input.max_height)) {
-    errors.height = "min height must be lower than max height";
-  } else if (Number(input.min_height) > 120 || Number(input.max_height) > 120) {
-    errors.height = "your dog can not measure more than 120";
   }
 
   if (!input.min_life_span || !input.max_life_span) {
@@ -58,11 +58,6 @@ export function validate(input) {
     Number(input.max_life_span) <= 0
   ) {
     errors.life_span = "life span must be more than 0";
-  } else if (
-    !/^[0-9]+$/.test(input.min_life_span) ||
-    !/^[0-9]+$/.test(input.max_life_span)
-  ) {
-    errors.life_span = "life span fields must contain numbers";
   } else if (Number(input.min_life_span) >= Number(input.max_life_span)) {
     errors.life_span = "min life span must be lower than max life span";
   } else if (
@@ -70,6 +65,11 @@ export function validate(input) {
     Number(input.max_life_span) > 25
   ) {
     errors.life_span = "life span can not be more than 25";
+  } else if (
+    !/^[0-9]+$/.test(input.min_life_span) ||
+    !/^[0-9]+$/.test(input.max_life_span)
+  ) {
+    errors.life_span = "life span fields must contain numbers";
   }
 
   if (input.temperament.length === 0) {
