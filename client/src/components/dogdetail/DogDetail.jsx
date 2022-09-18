@@ -52,7 +52,7 @@ function DogDetail() {
                 <div className={styles.titleContent}>Temperaments</div>
                 <div className={styles.temperamentContent}>
                   {dog.temperament.map((t) => {
-                    return <span>{t}</span>;
+                    return <span key={t}>{t}</span>;
                   })}
                 </div>
               </div>
