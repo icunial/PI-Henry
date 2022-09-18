@@ -16,7 +16,7 @@ const router = Router();
 router.use("/dogs", dogsRouter);
 router.use("/temperaments", temperamentsRouter);
 router.use("*", (req, res) => {
-  res.sendFile(__dirname, "../../client/build/index.html");
+  res.sendFile(path.join(__dirname, "../../client/build/index.html"));
 });
 
 module.exports = router;
