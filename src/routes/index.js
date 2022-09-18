@@ -1,4 +1,5 @@
 const { Router } = require("express");
+const { dirname } = require("path");
 const path = require("path");
 // Importar todos los routers;
 // Ejemplo: const authRouter = require('./auth.js');
@@ -15,7 +16,7 @@ const router = Router();
 
 router.use("/dogs", dogsRouter);
 router.use("/temperaments", temperamentsRouter);
-router.use("*", (req, res) => {
+router.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "../../client/build/index.html"));
 });
 

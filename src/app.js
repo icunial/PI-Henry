@@ -37,7 +37,7 @@ server.use((err, req, res, next) => {
   res.status(status).send(message);
 });
 
-/* server.use(express.static("client/build")); */
+server.use(express.static("client/build"));
 
 if (process.env.NODE_ENV === "production") {
   //server static content
