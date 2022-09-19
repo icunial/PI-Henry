@@ -1,0 +1,62 @@
+:root {
+  --main-black: #262526;
+  --main-white: #f3f3f3;
+  --main-gray: #afb2b6;
+  --main-background: #d7d8da;
+}
+
+.globalContainer {
+  position: absolute;
+  top: 0;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: var(--main-black);
+  padding: 1rem 0;
+  height: 1rem;
+  animation: slideDown 0.5s;
+  z-index: 5;
+}
+
+@keyframes slideDown {
+  from {
+    top: -100px;
+  }
+  to {
+    top: 0;
+  }
+}
+
+.container {
+  width: 80%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  font-size: 1.5rem;
+  color: var(--main-white);
+}
+
+.links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.link {
+  text-decoration: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 2px solid;
+  border-color: var(--main-white);
+  color: var(--main-white);
+  font-size: 1rem;
+}
+
+.link:hover {
+  background-color: var(--main-white);
+  color: var(--main-black);
+}

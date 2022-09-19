@@ -6,12 +6,12 @@ import Landpage from "./components/landpage/Landpage";
 
 import "./App.css";
 import { Route } from "react-router-dom";
+import Favourites from "./components/favourites/Favourites";
 
 function App() {
   return (
     <div className="appContainer">
       <Route path="/" exact component={Landpage} />
-
       <Route path="/home" exact component={Home} />
       <Route
         exact
@@ -19,6 +19,7 @@ function App() {
         render={({ match }) => <DogDetail match={match} />}
       />
       <Route path="/form" exact component={Form} />
+      <Route path="/favourites" exact component={Favourites} />
     </div>
   );
 }

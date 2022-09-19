@@ -12,13 +12,20 @@ import {
 
 import { changeOptionFilter, setCurrentPage } from "../../store/actions";
 
-import styles from "./SearchBar.module.css";
+import stylesLight from "./SearchBar.module.css";
+import stylesDark from "./SearchBarDark.module.css";
 
 const DropDown = (props) => {
+  const [title, setTitle] = useState("Filter By Temperament");
+  const theme = useSelector((state) => state.theme);
+
+  let styles = stylesLight;
+  theme ? (styles = stylesLight) : (styles = stylesDark);
+
   return (
     <div className={styles.dropdown}>
       <div className={styles.dropdownBtn} onClick={() => props.onClick()}>
-        Filter By Temperament
+        {title}
       </div>
       {props.isOpen && (
         <div className={styles.dropdownContent}>
@@ -28,6 +35,7 @@ const DropDown = (props) => {
                 className={styles.dropdownItem}
                 key={t.name}
                 onClick={(e) => {
+                  setTitle(t.name);
                   props.dispatch(setCurrentPage(1));
                   props.dispatch(changeOptionFilter("temperament"));
                   props.dispatch(changeValueFilter(t.name));
@@ -50,6 +58,10 @@ function SearchBar() {
   const dispatch = useDispatch();
 
   const temperaments = useSelector((state) => state.temperaments);
+  const theme = useSelector((state) => state.theme);
+
+  let styles = stylesLight;
+  theme ? (styles = stylesLight) : (styles = stylesDark);
 
   useEffect(() => {
     dispatch(getTemperaments());

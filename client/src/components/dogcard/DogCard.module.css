@@ -90,6 +90,7 @@
   display: flex;
   width: 100%;
   justify-content: flex-end;
+  gap: 1rem;
 }
 
 .link {
@@ -98,7 +99,7 @@
   cursor: pointer;
   border: 2px solid;
   border-color: var(--main-black);
-  color: white;
+  color: var(--main-white);
   background-color: var(--main-black);
   font-size: 0.75rem;
 }
@@ -106,4 +107,26 @@
 .link:hover {
   background-color: var(--main-white);
   color: var(--main-black);
+}
+
+.addFavourite {
+  text-decoration: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 2px solid;
+  border-color: green;
+  color: var(--main-white);
+  background-color: green;
+  font-size: 0.75rem;
+}
+
+.removeFavourite {
+  text-decoration: none;
+  padding: 0.5rem;
+  cursor: pointer;
+  border: 2px solid;
+  border-color: red;
+  color: var(--main-white);
+  background-color: red;
+  font-size: 0.75rem;
 }

@@ -1,5 +1,6 @@
 import React from "react";
-import styles from "./Sidebar.module.css";
+import stylesLight from "./Sidebar.module.css";
+import stylesDark from "./SidebarDark.module.css";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -13,15 +14,25 @@ import {
   getDogsFromZtoA,
   getDogsMoreWeight,
   getDogsLessWeight,
+  changeTheme,
 } from "../../store/actions";
 
 function Sidebar() {
   const dispatch = useDispatch();
   const option = useSelector((state) => state.option);
+  const theme = useSelector((state) => state.theme);
+
+  let styles = stylesLight;
+
+  theme ? (styles = stylesLight) : (styles = stylesDark);
 
   return (
-    <div className={styles.sidebarContainer}>
-      <div className={styles.itemsContainer}>
+    <div
+      className={theme ? styles.sidebarContainer : stylesDark.sidebarContainer}
+    >
+      <div
+        className={theme ? styles.itemsContainer : stylesDark.itemsContainer}
+      >
         <div
           className={option === "item_all" ? styles.itemSelected : styles.item}
           id="item_all"
@@ -122,6 +133,12 @@ function Sidebar() {
           <div className={styles.itemTitle}>-</div>
           <div className={styles.itemDescription}>Less Weight</div>
         </div>
+        <button
+          className={styles.changeThemeBtn}
+          onClick={() => dispatch(changeTheme(!theme))}
+        >
+          Change Theme
+        </button>
       </div>
     </div>
   );

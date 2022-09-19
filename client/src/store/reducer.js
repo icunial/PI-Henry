@@ -16,6 +16,9 @@ import {
   DELETE_DOG,
   GET_DOGS_TEMPERAMENT,
   CHANGE_VALUE_FILTER,
+  CHANGE_THEME,
+  ADD_FAVOURITE,
+  REMOVE_FAVOURITE,
 } from "./actions";
 
 const initialState = {
@@ -27,6 +30,8 @@ const initialState = {
   newDog: [],
   temperaments: [],
   currentPage: 1,
+  theme: true,
+  favourites: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -68,6 +73,15 @@ export default function reducer(state = initialState, action) {
       };
     case GET_DOGS_TEMPERAMENT:
       return { ...state, dogs: action.payload };
+    case CHANGE_THEME:
+      return { ...state, theme: action.payload };
+    case ADD_FAVOURITE:
+      return { ...state, favourites: [...state.favourites, action.payload] };
+    case REMOVE_FAVOURITE:
+      return {
+        ...state,
+        favourites: state.favourites.filter((dog) => dog.id !== action.payload),
+      };
     default:
       return state;
   }

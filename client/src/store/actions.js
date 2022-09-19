@@ -19,6 +19,32 @@ export const DELETE_DOG = "DELETE DOG";
 
 export const GET_DOGS_TEMPERAMENT = "GET DOGS TEMPERAMENT";
 
+export const CHANGE_THEME = "CHANGE THEME";
+
+export const ADD_FAVOURITE = "ADD FAVOURITE";
+export const REMOVE_FAVOURITE = "REMOVE FAVOURITE";
+
+export function addFavourite(payload) {
+  return {
+    type: ADD_FAVOURITE,
+    payload,
+  };
+}
+
+export function removeFavourite(payload) {
+  return {
+    type: REMOVE_FAVOURITE,
+    payload,
+  };
+}
+
+export function changeTheme(payload) {
+  return {
+    type: CHANGE_THEME,
+    payload,
+  };
+}
+
 export function getDogsByTemperament(temperament) {
   return function (dispatch) {
     dispatch({ type: LOADING, payload: true });

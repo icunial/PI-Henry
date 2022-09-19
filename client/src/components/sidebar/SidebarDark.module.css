@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: column;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  background-color: var(--main-white);
+  background-color: var(--main-black);
   height: 100vh;
   margin-top: 6rem;
   animation: slide 1s;
@@ -55,8 +55,8 @@
   flex-direction: column;
   width: 100%;
   border-left: 0.5rem solid;
-  border-color: var(--main-black);
-  color: var(--main-black);
+  border-color: var(--main-white);
+  color: var(--main-white);
 }
 
 .itemTitle {
@@ -69,18 +69,20 @@
 
 .item:hover {
   border-left: 0.5rem solid;
-  border-color: var(--main-black);
-  color: var(--main-black);
+  border-color: var(--main-white);
+  color: var(--main-white);
 }
 
 .changeThemeBtn {
   text-transform: uppercase;
-  border: 2px solid var(--main-black);
+  border: 2px solid var(--main-white);
   padding: 0.5rem;
   cursor: pointer;
+  background-color: var(--main-black);
+  color: var(--main-white);
 }
 
 .changeThemeBtn:hover {
-  background-color: var(--main-black);
-  color: var(--main-white);
+  background-color: var(--main-white);
+  color: var(--main-black);
 }
