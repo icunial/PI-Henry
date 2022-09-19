@@ -74,6 +74,8 @@ export function validate(input) {
 
   if (input.temperament.length === 0) {
     errors.temperament = "you must select one temperament";
+  } else if (input.temperament.length > 5) {
+    errors.temperament = "you must select five temperaments at most";
   }
 
   return errors;

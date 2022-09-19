@@ -2,7 +2,12 @@ import React from "react";
 import styles from "./DogCard.module.css";
 
 import { Link } from "react-router-dom";
-import { getDogById, addFavourite, removeFavourite } from "../../store/actions";
+import {
+  getDogById,
+  addFavourite,
+  removeFavourite,
+  getComments,
+} from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 
 function DogCard(props) {
@@ -68,7 +73,10 @@ function DogCard(props) {
           <Link
             to={`/dogs/${props.id}`}
             className={styles.link}
-            onClick={(e) => dispatch(getDogById(props.id))}
+            onClick={(e) => {
+              dispatch(getDogById(props.id));
+              dispatch(getComments(props.id));
+            }}
           >
             More Details
           </Link>

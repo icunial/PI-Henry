@@ -24,6 +24,35 @@ export const CHANGE_THEME = "CHANGE THEME";
 export const ADD_FAVOURITE = "ADD FAVOURITE";
 export const REMOVE_FAVOURITE = "REMOVE FAVOURITE";
 
+export const CREATE_COMMENT = "CREATE COMMENT";
+export const GET_COMMENTS = "GET COMMENTS";
+
+export function getComments(id) {
+  return function (dispatch) {
+    fetch(`/comments/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({ type: GET_COMMENTS, payload: data });
+      });
+  };
+}
+
+export function createComment(data) {
+  return function (dispatch) {
+    fetch(`/comments`, {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-type": "application/json",
+      },
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        dispatch({ type: CREATE_COMMENT, payload: data });
+      });
+  };
+}
+
 export function addFavourite(payload) {
   return {
     type: ADD_FAVOURITE,

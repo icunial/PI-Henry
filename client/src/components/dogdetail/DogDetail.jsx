@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 
@@ -7,11 +7,49 @@ import styles from "./DogDetail.module.css";
 import Loading from "../loading/Loading";
 import Navbar from "../navbar/Navbar";
 
-import { deleteDog } from "../../store/actions";
+import { deleteDog, createComment } from "../../store/actions";
+
+const validate = (input) => {
+  let errors = {};
+
+  if (input.name.length > 25 || input.name.length < 0) {
+    errors.name = "Name length must be between 0 and 25";
+  }
+
+  if (input.message.length <= 0) {
+    errors.message = "You must write a message";
+  } else if (input.message.length > 100) {
+    errors.message = "Your message must be 100 characters at most!";
+  }
+
+  return errors;
+};
 
 function DogDetail() {
   const dog = useSelector((state) => state.dog);
   const loading = useSelector((state) => state.loading);
+  const comments = useSelector((state) => state.comments);
+
+  const [input, setInput] = useState({
+    name: "",
+    message: "",
+  });
+
+  const [errors, setErrors] = useState({ message: "You must write a message" });
+
+  const handleInputChange = (e) => {
+    setInput((input) => {
+      const newInput = {
+        ...input,
+        [e.target.name]: e.target.value,
+      };
+
+      const errors = validate(newInput);
+      setErrors(errors);
+
+      return newInput;
+    });
+  };
 
   const dispatch = useDispatch();
   const history = useHistory();
@@ -82,6 +120,57 @@ function DogDetail() {
             ) : null}
           </div>
         </div>
+        {dog.id.toString().includes("-") ? (
+          <div className={styles.commentsContainer}>
+            <div className={styles.commentsSection}>
+              {comments.map((comment) => (
+                <div className={styles.comment} key={comment.id}>
+                  <span>{comment.name}</span>
+                  <p>{comment.message}</p>
+                </div>
+              ))}
+            </div>
+            <div className={styles.formComment}>
+              <input
+                className={styles.formField}
+                type="text"
+                placeholder="Name... (Optional)"
+                name="name"
+                value={input.name}
+                onChange={handleInputChange}
+              />
+              <input
+                className={styles.formField}
+                type="text"
+                placeholder="Write your message..."
+                name="message"
+                value={input.message}
+                onChange={handleInputChange}
+              />
+              <button
+                className={
+                  Object.keys(errors).length ? styles.disabledBtn : styles.btn
+                }
+                disabled={Object.keys(errors).length}
+                onClick={() => {
+                  dispatch(
+                    createComment({
+                      name: input.name ? input.name : "Anonymous",
+                      message: input.message,
+                      dogId: dog.id,
+                    })
+                  );
+                  setInput({
+                    name: "",
+                    message: "",
+                  });
+                }}
+              >
+                Send
+              </button>
+            </div>
+          </div>
+        ) : null}
       </div>
     </div>
   );

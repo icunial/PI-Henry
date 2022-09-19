@@ -19,6 +19,8 @@ import {
   CHANGE_THEME,
   ADD_FAVOURITE,
   REMOVE_FAVOURITE,
+  CREATE_COMMENT,
+  GET_COMMENTS,
 } from "./actions";
 
 const initialState = {
@@ -32,6 +34,7 @@ const initialState = {
   currentPage: 1,
   theme: true,
   favourites: [],
+  comments: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -82,6 +85,10 @@ export default function reducer(state = initialState, action) {
         ...state,
         favourites: state.favourites.filter((dog) => dog.id !== action.payload),
       };
+    case CREATE_COMMENT:
+      return { ...state, comments: [action.payload, ...state.comments] };
+    case GET_COMMENTS:
+      return { ...state, comments: action.payload };
     default:
       return state;
   }

@@ -5,6 +5,7 @@ const path = require("path");
 // Ejemplo: const authRouter = require('./auth.js');
 const dogsRouter = require("./dogs");
 const temperamentsRouter = require("./temperaments");
+const commentsRouter = require("./comments");
 
 const router = Router();
 
@@ -16,5 +17,6 @@ const router = Router();
 
 router.use("/dogs", dogsRouter);
 router.use("/temperaments", temperamentsRouter);
+router.use("/comments", commentsRouter);
 
 module.exports = router;

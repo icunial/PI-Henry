@@ -129,6 +129,7 @@
   flex-direction: row;
   gap: 0.25rem;
   justify-content: center;
+  margin-bottom: 0.5rem;
 }
 
 .temperamentItem {

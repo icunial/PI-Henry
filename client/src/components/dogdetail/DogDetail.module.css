@@ -39,8 +39,8 @@
 
 .dogContainer {
   margin-top: 2rem;
-  width: 100%;
-  height: 100%;
+  width: 75%;
+  height: 500px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -100,7 +100,7 @@
 }
 
 .physicalData {
-  font-size: 1.75rem;
+  font-size: 1.5;
 }
 
 .otherContent {
@@ -142,7 +142,7 @@
   margin-top: 0.5rem;
   text-decoration: none;
   text-transform: uppercase;
-  padding: 8px;
+  padding: 0.5rem;
   cursor: pointer;
   border: 2px solid;
   border-color: red;
@@ -153,4 +153,74 @@
 .deleteBtn:hover {
   background-color: var(--main-white);
   color: red;
+}
+
+.commentsContainer {
+  margin-top: 2rem;
+  width: 25%;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 2px 10px black;
+  background-color: var(--main-white);
+  position: relative;
+}
+
+.commentsSection {
+  width: calc(100% - 2rem);
+  background-color: var(--main-white);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+.formComment {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  bottom: 0;
+}
+
+.formField {
+  padding: 0.5rem;
+  background-color: var(--main-white);
+  border: 2px solid var(--main-black);
+  flex-grow: 1;
+}
+
+.btn {
+  background-color: var(--main-black);
+  color: var(--main-white);
+  padding: 0.5rem;
+  border: 2px solid var(--main-black);
+  cursor: pointer;
+  text-transform: uppercase;
+}
+.btn:hover {
+  background-color: var(--main-white);
+  color: var(--main-black);
+}
+
+.comment {
+  width: 100%;
+  background-color: var(--main-background);
+  display: flex;
+  flex-direction: column;
+}
+
+.comment span {
+  font-size: 0.75rem;
+  font-weight: bold;
+}
+
+.disabledBtn {
+  background-color: var(--main-gray);
+  color: var(--main-black);
+  padding: 0.5rem;
+  border: 2px solid var(--main-black);
+  text-transform: uppercase;
 }
