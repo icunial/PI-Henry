@@ -16,21 +16,38 @@ module.exports = (sequelize) => {
         allowNull: false,
         unique: true,
       },
+      min_height: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      max_height: {
+        type: DataTypes.INTEGER,
+      },
       height: {
         type: DataTypes.STRING,
         allowNull: false,
+      },
+      min_weight: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      max_weight: {
+        type: DataTypes.INTEGER,
       },
       weight: {
         type: DataTypes.STRING,
         allowNull: false,
       },
+      min_life_span: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+      },
+      max_life_span: {
+        type: DataTypes.INTEGER,
+      },
       life_span: {
         type: DataTypes.STRING,
-        get() {
-          if (this.getDataValue("life_span") !== null) {
-            return `${this.getDataValue("life_span")} years`;
-          }
-        },
+        allowNull: false,
       },
       image: {
         type: DataTypes.STRING,

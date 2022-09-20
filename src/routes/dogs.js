@@ -6,6 +6,8 @@ const { v4: uuidv4 } = require("uuid");
 
 const dogController = require("../controllers/dogs");
 
+const validations = require("../utils/validate");
+
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
   let result = [];
@@ -17,7 +19,7 @@ router.get("/:id", async (req, res) => {
       result = await dogController.findDogByIdApi(id);
     }
     if (!result.length)
-      return res.status(200).json(`Dog with ID: ${id} not found!`);
+      return res.status(404).json(`Dog with ID: ${id} not found!`);
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json(error.message);
@@ -33,7 +35,7 @@ router.get("/", async (req, res) => {
       const dbResults = await dogController.findByNameDb(name);
       const results = dbResults.concat(apiResults);
       if (!results.length)
-        return res.status(200).json(`Dog with name ${name} not found!`);
+        return res.status(404).json(`Dog with name ${name} not found!`);
 
       return res.status(200).json(results);
     }
@@ -50,7 +52,7 @@ router.get("/", async (req, res) => {
       const dbResults = await dogController.getAllDb();
       if (!dbResults.length)
         return res
-          .status(200)
+          .status(404)
           .json("There are not dogs saved in the Database!");
       return res.status(200).json(dbResults);
     }
@@ -58,7 +60,7 @@ router.get("/", async (req, res) => {
     if (from === "api") {
       const apiResults = await dogController.getAllApi();
       if (!apiResults.length)
-        return res.status(200).json("There are not dogs saved in the Api!");
+        return res.status(404).json("There are not dogs saved in the Api!");
       return res.status(200).json(apiResults);
     }
 
@@ -73,17 +75,43 @@ router.get("/", async (req, res) => {
 router.post("/", async (req, res) => {
   const dog = req.body;
 
-  if (!dog.name) return res.status(400).json("Name parameter is missing");
-  if (!dog.height) return res.status(400).json("Height parameter is missing");
-  if (!dog.weight) return res.status(400).json("Weight parameter is missing");
+  if (validations.validateName(dog.name))
+    return res.status(400).json(validations.validateName(dog.name));
+
+  if (validations.validateHeight(dog.min_height, dog.max_height))
+    return res
+      .status(400)
+      .json(validations.validateHeight(dog.min_height, dog.max_height));
+
+  if (validations.validateWeight(dog.min_weight, dog.max_weight))
+    return res
+      .status(400)
+      .json(validations.validateWeight(dog.min_weight, dog.max_weight));
+
+  if (validations.validateLifeSpan(dog.min_life_span, dog.max_life_span))
+    return res
+      .status(400)
+      .json(validations.validateLifeSpan(dog.min_life_span, dog.max_life_span));
 
   try {
     if (!dog.temperaments) {
-      const dogCreated = await Dog.create({ ...dog, id: uuidv4() });
+      const dogCreated = await Dog.create({
+        ...dog,
+        weight: dog.min_weight + " - " + dog.max_weight,
+        height: dog.min_height + " - " + dog.max_height,
+        life_span: dog.min_life_span + " - " + dog.max_life_span + " years",
+        id: uuidv4(),
+      });
       return res.status(201).json(dogCreated);
     }
 
-    const dogCreated = await Dog.create({ ...dog, id: uuidv4() });
+    const dogCreated = await Dog.create({
+      ...dog,
+      weight: dog.min_weight + " - " + dog.max_weight,
+      height: dog.min_height + " - " + dog.max_height,
+      life_span: dog.min_life_span + " - " + dog.max_life_span + " years",
+      id: uuidv4(),
+    });
 
     dog.temperaments.forEach(async (temperament) => {
       const temperamentFound = await Temperament.findOne({
@@ -142,7 +170,7 @@ router.put("/:id", async (req, res) => {
   const { name } = req.body;
 
   try {
-    const result = await dogController.updateDogFromDb(name);
+    const result = await dogController.updateDogFromDb(id, name);
     res.status(200).json(result);
   } catch (error) {
     res.status(400).json(error.message);
