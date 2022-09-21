@@ -44,6 +44,11 @@ router.get("/", async (req, res) => {
       const apiResults = await dogController.findByTemperamentApi(temperament);
       const dbResults = await dogController.findByTemperamentDb(temperament);
       const results = dbResults.concat(apiResults);
+      console.log(results);
+      if (!results.length)
+        return res
+          .status(404)
+          .json(`Dogs with temperament ${temperament} not found!`);
 
       return res.status(200).json(results);
     }

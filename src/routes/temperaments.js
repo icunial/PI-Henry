@@ -54,11 +54,9 @@ router.get("/:temperament", async (req, res) => {
       include: Dog,
     });
 
-    console.log(result.dogs);
-
     if (!result.dogs.length)
       return res
-        .status(200)
+        .status(404)
         .json(`Dogs with TEMPERAMENT: ${temperament} not found!`);
 
     res.status(200).json(result);
