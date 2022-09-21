@@ -44,7 +44,6 @@ router.get("/", async (req, res) => {
       const apiResults = await dogController.findByTemperamentApi(temperament);
       const dbResults = await dogController.findByTemperamentDb(temperament);
       const results = dbResults.concat(apiResults);
-      console.log(results);
       if (!results.length)
         return res
           .status(404)
@@ -139,18 +138,14 @@ router.get("/filter/:opt", async (req, res) => {
 
     if (opt === "az") {
       results = await dogController.orderDogsFromAtoZ();
-    }
-
-    if (opt === "za") {
+    } else if (opt === "za") {
       results = await dogController.orderDogsFromZtoA();
-    }
-
-    if (opt === "more") {
+    } else if (opt === "more") {
       results = await dogController.orderDogsMoreWeight();
-    }
-
-    if (opt === "less") {
+    } else if (opt === "less") {
       results = await dogController.orderDogsLessWeight();
+    } else {
+      return res.status(404).json("No filter available");
     }
 
     res.status(200).json(results);

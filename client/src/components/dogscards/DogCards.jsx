@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import DogCard from "../dogcard/DogCard";
 import Loading from "../loading/Loading";
+import Message from "../message/Message";
 import styles from "./DogCards.module.css";
 import {
   getDogs,
@@ -15,17 +16,6 @@ import {
   setCurrentPage,
   getDogsByTemperament,
 } from "../../store/actions";
-
-const Modal = (props) => {
-  return (
-    <div className={styles.modalContainer}>
-      <div className={styles.modal}>
-        <p>{props.message}</p>
-        <button onClick={props.onClose}>Accept</button>
-      </div>
-    </div>
-  );
-};
 
 function DogCards() {
   const dispatch = useDispatch();
@@ -102,22 +92,12 @@ function DogCards() {
     }
   }, [dispatch]);
 
-  const [modal, setModal] = useState(true);
-
-  const closeModal = () => {
-    setModal(false);
-  };
-
-  const showModal = () => {
-    setModal(true);
-  };
-
   return (
     <div className={styles.globalContainer}>
       {loading ? (
         <Loading />
       ) : typeof dogs === "string" ? (
-        modal && <Modal message={dogs} onClose={closeModal} />
+        <Message />
       ) : (
         <div className={styles.container}>
           <ul className={styles.paginationNumbers}>
