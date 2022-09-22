@@ -130,3 +130,21 @@
   background-color: red;
   font-size: 0.75rem;
 }
+
+@media screen and (max-width: 900px) {
+  .container {
+    width: 500px;
+  }
+  .temperaments span {
+    padding: 0.25rem;
+  }
+  .weightItem {
+    font-size: 0.5rem;
+  }
+
+  .link,
+  .addFavourite,
+  .removeFavourite {
+    font-size: 0.5rem;
+  }
+}

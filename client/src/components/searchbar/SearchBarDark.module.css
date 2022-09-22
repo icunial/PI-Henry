@@ -114,3 +114,31 @@
   background-color: var(--main-white);
   color: var(--main-black);
 }
+
+@media screen and (max-width: 800px) {
+  .searchbar_btn {
+    font-size: 0.75rem;
+  }
+  .searchbar_field {
+    font-size: 0.75rem;
+  }
+  .dropdown {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .globalContainer {
+    top: 5.5rem;
+    animation: slideDown2 1s;
+  }
+}
+
+@keyframes slideDown2 {
+  from {
+    top: -100px;
+  }
+  to {
+    top: 5.5rem;
+  }
+}

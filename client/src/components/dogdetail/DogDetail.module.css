@@ -16,8 +16,8 @@
 }
 
 .container {
-  width: 75%;
-  height: 75%;
+  width: 1000px;
+  height: 500px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,7 +39,7 @@
 
 .dogContainer {
   margin-top: 2rem;
-  width: 75%;
+  width: 800px;
   height: 500px;
   display: flex;
   flex-direction: row;
@@ -157,7 +157,8 @@
 
 .commentsContainer {
   margin-top: 2rem;
-  width: 25%;
+  margin-left: 1rem;
+  width: 200px;
   height: 500px;
   display: flex;
   flex-direction: column;
@@ -223,4 +224,22 @@
   padding: 0.5rem;
   border: 2px solid var(--main-black);
   text-transform: uppercase;
+}
+
+@media screen and (max-width: 1000px) {
+  .dogContainer {
+    width: 700px;
+  }
+  .commentsContainer {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .dogContainer {
+    width: 600px;
+  }
+  .commentsContainer {
+    display: none;
+  }
 }

@@ -60,3 +60,22 @@
   background-color: var(--main-white);
   color: var(--main-black);
 }
+
+@media screen and (max-width: 800px) {
+  .title {
+    font-size: 1rem;
+  }
+  .link {
+    font-size: 0.75rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .globalContainer {
+    height: 3.5rem;
+  }
+  .container {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}

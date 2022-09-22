@@ -109,3 +109,18 @@
   background-color: var(--main-white);
   color: var(--main-black);
 }
+
+@media screen and (max-width: 1150px) {
+  .paginationNumbers {
+    width: 80%;
+  }
+  .paginationNumbers li {
+    font-size: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .globalContainer {
+    margin-top: 9rem;
+  }
+}
