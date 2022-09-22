@@ -1,27 +1,4 @@
-import {
-  GET_DOGS,
-  GET_DOGS_API,
-  GET_DOGS_DB,
-  GET_DOGS_AZ,
-  GET_DOGS_ZA,
-  GET_DOGS_NAME,
-  GET_DOGS_MORE,
-  GET_DOGS_LESS,
-  GET_DOG_ID,
-  CHANGE_OPTION_FILTER,
-  LOADING,
-  CREATE_DOG,
-  GET_TEMPERAMENTS,
-  SET_CURRENT_PAGE,
-  DELETE_DOG,
-  GET_DOGS_TEMPERAMENT,
-  CHANGE_VALUE_FILTER,
-  CHANGE_THEME,
-  ADD_FAVOURITE,
-  REMOVE_FAVOURITE,
-  CREATE_COMMENT,
-  GET_COMMENTS,
-} from "./actions";
+import constants from "./constants.js";
 
 const initialState = {
   dogs: [],
@@ -39,57 +16,57 @@ const initialState = {
 
 export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case GET_DOGS:
+    case constants.GET_DOGS:
       return { ...state, dogs: action.payload };
-    case GET_DOGS_API:
+    case constants.GET_DOGS_API:
       return { ...state, dogs: action.payload };
-    case GET_DOGS_DB:
+    case constants.GET_DOGS_DB:
       return { ...state, dogs: action.payload };
-    case GET_DOGS_AZ:
+    case constants.GET_DOGS_AZ:
       return { ...state, dogs: action.payload };
-    case GET_DOGS_ZA:
+    case constants.GET_DOGS_ZA:
       return { ...state, dogs: action.payload };
-    case GET_DOGS_NAME:
+    case constants.GET_DOGS_NAME:
       return { ...state, dogs: action.payload };
-    case GET_DOGS_MORE:
+    case constants.GET_DOGS_MORE:
       return { ...state, dogs: action.payload };
-    case GET_DOGS_LESS:
+    case constants.GET_DOGS_LESS:
       return { ...state, dogs: action.payload };
-    case GET_DOG_ID:
+    case constants.GET_DOG_ID:
       return { ...state, dog: action.payload };
-    case CHANGE_OPTION_FILTER:
+    case constants.CHANGE_OPTION_FILTER:
       return { ...state, option: action.payload };
-    case CHANGE_VALUE_FILTER:
+    case constants.CHANGE_VALUE_FILTER:
       return { ...state, valueFilter: action.payload };
-    case LOADING:
+    case constants.LOADING:
       return { ...state, loading: action.payload };
-    case CREATE_DOG:
+    case constants.CREATE_DOG:
       return { ...state, newDog: action.payload };
-    case GET_TEMPERAMENTS:
+    case constants.GET_TEMPERAMENTS:
       return { ...state, temperaments: action.payload };
-    case SET_CURRENT_PAGE:
+    case constants.SET_CURRENT_PAGE:
       return { ...state, currentPage: action.payload };
-    case DELETE_DOG:
+    case constants.DELETE_DOG:
       return {
         ...state,
         dogs: state.dogs.filter((dog) => dog.id !== action.payload),
       };
-    case GET_DOGS_TEMPERAMENT:
+    case constants.GET_DOGS_TEMPERAMENT:
       return { ...state, dogs: action.payload };
-    case CHANGE_THEME:
+    case constants.CHANGE_THEME:
       return { ...state, theme: action.payload };
-    case ADD_FAVOURITE:
+    case constants.ADD_FAVOURITE:
       return { ...state, favourites: [...state.favourites, action.payload] };
-    case REMOVE_FAVOURITE:
+    case constants.REMOVE_FAVOURITE:
       return {
         ...state,
         favourites: state.favourites.filter((dog) => dog.id !== action.payload),
       };
-    case CREATE_COMMENT:
+    case constants.CREATE_COMMENT:
       return { ...state, comments: [action.payload, ...state.comments] };
-    case GET_COMMENTS:
+    case constants.GET_COMMENTS:
       return { ...state, comments: action.payload };
     default:
-      return state;
+      return { ...state };
   }
 }

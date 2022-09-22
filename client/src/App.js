@@ -1,11 +1,10 @@
-import Home from "./components/home/Home";
+import "./App.css";
+import { Route } from "react-router-dom";
 
+import Home from "./components/home/Home";
 import DogDetail from "./components/dogdetail/DogDetail";
 import Form from "./components/form/Form";
 import Landpage from "./components/landpage/Landpage";
-
-import "./App.css";
-import { Route } from "react-router-dom";
 import Favourites from "./components/favourites/Favourites";
 
 function App() {

@@ -7,7 +7,8 @@ import styles from "./DogDetail.module.css";
 import Loading from "../loading/Loading";
 import Navbar from "../navbar/Navbar";
 
-import { deleteDog, createComment } from "../../store/actions";
+import { createComment } from "../../store/actions/actions";
+import { deleteDog } from "../../store/actions/dogsActions";
 
 const validate = (input) => {
   let errors = {};

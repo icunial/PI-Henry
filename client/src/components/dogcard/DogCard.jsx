@@ -3,11 +3,11 @@ import styles from "./DogCard.module.css";
 
 import { Link } from "react-router-dom";
 import {
-  getDogById,
   addFavourite,
   removeFavourite,
   getComments,
-} from "../../store/actions";
+} from "../../store/actions/actions";
+import { getDogById } from "../../store/actions/dogsActions";
 import { useDispatch, useSelector } from "react-redux";
 
 function DogCard(props) {

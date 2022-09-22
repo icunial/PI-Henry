@@ -13,9 +13,9 @@ import {
   getDogsLessWeight,
   getDogsMoreWeight,
   getDogsByName,
-  setCurrentPage,
   getDogsByTemperament,
-} from "../../store/actions";
+} from "../../store/actions/dogsActions";
+import { setCurrentPage } from "../../store/actions/actions";
 
 function DogCards() {
   const dispatch = useDispatch();

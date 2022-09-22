@@ -4,8 +4,6 @@ import stylesDark from "./SidebarDark.module.css";
 
 import { useDispatch, useSelector } from "react-redux";
 
-import { changeOptionFilter, setCurrentPage } from "../../store/actions";
-
 import {
   getDogs,
   getDogsFromApi,
@@ -14,8 +12,12 @@ import {
   getDogsFromZtoA,
   getDogsMoreWeight,
   getDogsLessWeight,
+} from "../../store/actions/dogsActions";
+import {
   changeTheme,
-} from "../../store/actions";
+  changeOptionFilter,
+  setCurrentPage,
+} from "../../store/actions/actions";
 
 function Sidebar() {
   const dispatch = useDispatch();

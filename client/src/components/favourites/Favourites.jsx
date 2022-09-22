@@ -4,7 +4,6 @@ import Navbar from "../navbar/Navbar";
 import DogCard from "../dogcard/DogCard";
 
 import styles from "./Favourites.module.css";
-import { useState } from "react";
 
 function Favourites() {
   const favourites = useSelector((state) => state.favourites);

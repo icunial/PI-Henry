@@ -5,12 +5,15 @@ import { useDispatch, useSelector } from "react-redux";
 
 import {
   getDogsByName,
-  getTemperaments,
   getDogsByTemperament,
-  changeValueFilter,
-} from "../../store/actions";
+} from "../../store/actions/dogsActions";
 
-import { changeOptionFilter, setCurrentPage } from "../../store/actions";
+import {
+  changeOptionFilter,
+  setCurrentPage,
+  changeValueFilter,
+  getTemperaments,
+} from "../../store/actions/actions";
 
 import stylesLight from "./SearchBar.module.css";
 import stylesDark from "./SearchBarDark.module.css";

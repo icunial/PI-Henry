@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createDog } from "../../store/actions";
+import { createDog } from "../../store/actions/dogsActions";
 import Loading from "../loading/Loading";
 import Navbar from "../navbar/Navbar";
 
