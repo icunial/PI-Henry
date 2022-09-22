@@ -9,7 +9,6 @@ import Navbar from "../navbar/Navbar";
 
 import { createComment } from "../../store/actions/actions";
 import { deleteDog } from "../../store/actions/dogsActions";
-import Message from "../message/Message";
 
 const validate = (input) => {
   let errors = {};

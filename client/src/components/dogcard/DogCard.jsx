@@ -73,10 +73,12 @@ function DogCard(props) {
           <Link
             to={`/dogs/${props.id}`}
             className={styles.link}
-            onClick={(e) => {
-              dispatch(getDogById(props.id));
-              dispatch(getComments(props.id));
-            }}
+            onClick={(e) =>
+              props.id.toString().includes("-")
+                ? (dispatch(getDogById(props.id)),
+                  dispatch(getComments(props.id)))
+                : dispatch(getDogById(props.id))
+            }
           >
             More Details
           </Link>
