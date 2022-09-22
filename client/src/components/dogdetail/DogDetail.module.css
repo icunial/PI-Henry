@@ -16,7 +16,7 @@
 }
 
 .container {
-  width: 1000px;
+  width: 1200px;
   height: 500px;
   display: flex;
   justify-content: center;
@@ -39,7 +39,7 @@
 
 .dogContainer {
   margin-top: 2rem;
-  width: 800px;
+  width: 1000px;
   height: 500px;
   display: flex;
   flex-direction: row;
