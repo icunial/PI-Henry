@@ -18,7 +18,10 @@ const findDogByIdApi = async (id) => {
             temperament: r.temperament
               ? utils.convertTemperamentsToArray(r.temperament)
               : [],
-            weight: r.weight.metric,
+            weight:
+              r.weight.metric.substring(0, 3) === "NaN"
+                ? "No Specified"
+                : r.weight.metric,
             height: r.height.metric,
             life_span: r.life_span,
           });
@@ -72,7 +75,10 @@ const findByNameApi = async (name) => {
           temperament: r.temperament
             ? utils.convertTemperamentsToArray(r.temperament)
             : [],
-          weight: r.weight.metric,
+          weight:
+            r.weight.metric.substring(0, 3) === "NaN"
+              ? "No Specified"
+              : r.weight.metric,
         });
       });
     }
@@ -124,7 +130,10 @@ const findByTemperamentApi = async (temp) => {
           temperament: r.temperament
             ? utils.convertTemperamentsToArray(r.temperament)
             : [],
-          weight: r.weight.metric,
+          weight:
+            r.weight.metric.substring(0, 3) === "NaN"
+              ? "No Specified"
+              : r.weight.metric,
         });
       });
     }
@@ -181,7 +190,10 @@ const getAllApi = async () => {
           temperament: r.temperament
             ? utils.convertTemperamentsToArray(r.temperament)
             : [],
-          weight: r.weight.metric,
+          weight:
+            r.weight.metric.substring(0, 3) === "NaN"
+              ? "No Specified"
+              : r.weight.metric,
         });
       });
     }
@@ -257,7 +269,7 @@ const orderDogsMoreWeight = async () => {
     let results = [...dogsFromApi, ...dogsFromDb];
 
     return results.sort((a, b) => {
-      if (a.weightConvert <= b.weightConvert) return 1;
+      if (a.weightConvert < b.weightConvert) return 1;
       if (a.weightConvert > b.weightConvert) return -1;
       return 0;
     });
@@ -274,7 +286,9 @@ const orderDogsLessWeight = async () => {
     const results = [...dogsFromApi, ...dogsFromDb];
 
     return results.sort((a, b) => {
-      return a.weightConvert - b.weightConvert;
+      if (a.weightConvert > b.weightConvert) return 1;
+      if (a.weightConvert < b.weightConvert) return -1;
+      return 0;
     });
   } catch (error) {
     throw new Error("Error trying to order from More Weight to Less");

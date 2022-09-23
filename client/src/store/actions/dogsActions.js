@@ -131,7 +131,7 @@ export function getDogsByName(name) {
   };
 }
 
-export function getDogById(id) {
+/* export function getDogById(id) {
   return function (dispatch) {
     dispatch({ type: constants.LOADING, payload: true });
     fetch(`/dogs/${id}`)
@@ -141,7 +141,19 @@ export function getDogById(id) {
         dispatch({ type: constants.LOADING, payload: false });
       });
   };
-}
+} */
+
+export const getDogById = (id) => {
+  return (dispatch) => {
+    dispatch({ type: constants.LOADING, payload: true });
+    fetch(`/dogs/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        dispatch({ type: constants.GET_DOG_ID, payload: data[0] });
+        dispatch({ type: constants.LOADING, payload: false });
+      });
+  };
+};
 
 export function getDogsByTemperament(temperament) {
   return function (dispatch) {

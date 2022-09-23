@@ -24,9 +24,7 @@ function Sidebar() {
   const option = useSelector((state) => state.option);
   const theme = useSelector((state) => state.theme);
 
-  let styles = stylesLight;
-
-  theme ? (styles = stylesLight) : (styles = stylesDark);
+  let styles = theme ? stylesLight : stylesDark;
 
   return (
     <div
