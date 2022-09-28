@@ -269,8 +269,12 @@ const orderDogsMoreWeight = async () => {
     let results = [...dogsFromApi, ...dogsFromDb];
 
     return results.sort((a, b) => {
-      if (a.weightConvert < b.weightConvert) return 1;
-      if (a.weightConvert > b.weightConvert) return -1;
+      if (a.min_weight < b.min_weight) return 1;
+      if (a.min_weight > b.min_weight) return -1;
+      if (a.min_weight === b.min_weight) {
+        if (a.max_weight < b.max_weight) return 1;
+        if (a.max_weight > b.max_weight) return -1;
+      }
       return 0;
     });
   } catch (error) {
@@ -286,8 +290,12 @@ const orderDogsLessWeight = async () => {
     const results = [...dogsFromApi, ...dogsFromDb];
 
     return results.sort((a, b) => {
-      if (a.weightConvert > b.weightConvert) return 1;
-      if (a.weightConvert < b.weightConvert) return -1;
+      if (a.min_weight > b.min_weight) return 1;
+      if (a.min_weight < b.min_weight) return -1;
+      if (a.min_weight === b.min_weight) {
+        if (a.max_weight > b.max_weight) return 1;
+        if (a.max_weight < b.max_weight) return -1;
+      }
       return 0;
     });
   } catch (error) {

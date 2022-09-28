@@ -16,7 +16,8 @@ const getAllApiConvertWeight = async () => {
               temperament: r.temperament
                 ? convertTemperamentsToArray(r.temperament)
                 : [],
-              weightConvert: parseInt(r.weight.metric.substring(0, 2).trim()),
+              min_weight: parseInt(r.weight.metric.split(" - ")[0]),
+              max_weight: parseInt(r.weight.metric.split(" - ")[1]),
               weight: r.weight.metric,
             });
         }
@@ -42,7 +43,8 @@ const getAllDbConvertWeight = async () => {
         name: r.name,
         image: r.image,
         temperament: r.temperaments.map((t) => t.name),
-        weightConvert: parseInt(r.weight.substring(0, 3).trim()),
+        min_weight: parseInt(r.weight.split(" - ")[0]),
+        max_weight: parseInt(r.weight.split(" - ")[1]),
         weight: r.weight,
       });
     });
