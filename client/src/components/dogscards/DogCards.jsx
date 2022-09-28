@@ -116,7 +116,6 @@ function DogCards() {
                 name={dog.name}
                 image={dog.image}
                 temperament={dog.temperament}
-                /* weight={parseInt(dog.weight.substring(0, 2).trim())} */
                 weight={dog.weight}
               />
             ))}
