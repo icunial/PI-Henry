@@ -20,9 +20,6 @@ import {
 import { connect } from "react-redux";
 
 class SidebarClass extends React.Component {
-  constructor(props) {
-    super(props);
-  }
   render() {
     let styles = this.props.theme ? stylesLight : stylesDark;
     return (
