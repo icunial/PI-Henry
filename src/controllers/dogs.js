@@ -292,8 +292,10 @@ const orderDogsLessWeight = async () => {
     return results.sort((a, b) => {
       if (a.min_weight > b.min_weight) return 1;
       if (a.min_weight < b.min_weight) return -1;
+
       if (a.min_weight === b.min_weight) {
         if (a.max_weight > b.max_weight) return 1;
+        if (b.max_weight === null) return -1;
         if (a.max_weight < b.max_weight) return -1;
       }
       return 0;

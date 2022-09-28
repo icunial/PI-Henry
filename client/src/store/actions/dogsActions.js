@@ -50,7 +50,7 @@ export function getDogs() {
 export function getDogsFromApi() {
   return function (dispatch) {
     dispatch({ type: constants.LOADING, payload: true });
-    fetch("/dogs?from=api")
+    fetch("/dogs/from/api")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: constants.GET_DOGS_API, payload: data });
@@ -62,7 +62,7 @@ export function getDogsFromApi() {
 export function getDogsFromDb() {
   return function (dispatch) {
     dispatch({ type: constants.LOADING, payload: true });
-    fetch("/dogs?from=db")
+    fetch("/dogs/from/db")
       .then((response) => response.json())
       .then((data) => {
         dispatch({ type: constants.GET_DOGS_DB, payload: data });
@@ -158,7 +158,7 @@ export function getDogById(id) {
 export function getDogsByTemperament(temperament) {
   return function (dispatch) {
     dispatch({ type: constants.LOADING, payload: true });
-    fetch(`/dogs?temperament=${temperament}`)
+    fetch(`/dogs/temperaments/${temperament}`)
       .then((res) => res.json())
       .then((data) => {
         dispatch({ type: constants.GET_DOGS_TEMPERAMENT, payload: data });

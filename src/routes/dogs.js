@@ -27,7 +27,7 @@ router.get("/:id", async (req, res) => {
 });
 
 router.get("/", async (req, res) => {
-  const { name, from, temperament } = req.query;
+  const { name } = req.query;
 
   try {
     if (name) {
@@ -38,34 +38,8 @@ router.get("/", async (req, res) => {
         return res.status(404).json(`Dog with name ${name} not found!`);
 
       return res.status(200).json(results);
-    }
-
-    if (temperament) {
-      const apiResults = await dogController.findByTemperamentApi(temperament);
-      const dbResults = await dogController.findByTemperamentDb(temperament);
-      const results = dbResults.concat(apiResults);
-      if (!results.length)
-        return res
-          .status(404)
-          .json(`Dogs with temperament ${temperament} not found!`);
-
-      return res.status(200).json(results);
-    }
-
-    if (from === "db") {
-      const dbResults = await dogController.getAllDb();
-      if (!dbResults.length)
-        return res
-          .status(404)
-          .json("There are not dogs saved in the Database!");
-      return res.status(200).json(dbResults);
-    }
-
-    if (from === "api") {
-      const apiResults = await dogController.getAllApi();
-      if (!apiResults.length)
-        return res.status(404).json("There are not dogs saved in the Api!");
-      return res.status(200).json(apiResults);
+    } else if (name === "") {
+      return res.status(400).json(`You should enter a name!`);
     }
 
     const apiResults = await dogController.getAllApi();
@@ -151,6 +125,49 @@ router.get("/filter/:opt", async (req, res) => {
     res.status(200).json(results);
   } catch (error) {
     res.status(400).json(error);
+  }
+});
+
+router.get("/temperaments/:temperament", async (req, res) => {
+  const { temperament } = req.params;
+  try {
+    if (temperament) {
+      const apiResults = await dogController.findByTemperamentApi(temperament);
+      const dbResults = await dogController.findByTemperamentDb(temperament);
+      const results = dbResults.concat(apiResults);
+      if (!results.length)
+        return res
+          .status(404)
+          .json(`Dogs with temperament ${temperament} not found!`);
+
+      return res.status(200).json(results);
+    }
+  } catch (error) {
+    res.status(400).json(error.message);
+  }
+});
+
+router.get("/from/:from", async (req, res) => {
+  const { from } = req.params;
+
+  try {
+    if (from === "db") {
+      const dbResults = await dogController.getAllDb();
+      if (!dbResults.length)
+        return res
+          .status(404)
+          .json("There are not dogs saved in the Database!");
+      return res.status(200).json(dbResults);
+    }
+
+    if (from === "api") {
+      const apiResults = await dogController.getAllApi();
+      if (!apiResults.length)
+        return res.status(404).json("There are not dogs saved in the Api!");
+      return res.status(200).json(apiResults);
+    }
+  } catch (error) {
+    res.status(400).json(error.message);
   }
 });
 
