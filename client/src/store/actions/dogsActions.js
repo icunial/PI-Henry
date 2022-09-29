@@ -137,8 +137,13 @@ export function getDogById(id) {
     fetch(`/dogs/${id}`)
       .then((response) => response.json())
       .then((data) => {
-        dispatch({ type: constants.GET_DOG_ID, payload: data[0] });
-        dispatch({ type: constants.LOADING, payload: false });
+        if (typeof data === "string") {
+          dispatch({ type: constants.GET_DOG_ID, payload: data });
+          dispatch({ type: constants.LOADING, payload: false });
+        } else {
+          dispatch({ type: constants.GET_DOG_ID, payload: data[0] });
+          dispatch({ type: constants.LOADING, payload: false });
+        }
       });
   };
 }

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createDog } from "../../store/actions/dogsActions";
 import Loading from "../loading/Loading";
@@ -85,7 +86,7 @@ const Modal = (props) => {
   return (
     <div className={styles.modalContainer}>
       <div className={styles.modal}>
-        <p>Dog Created Successfully!</p>
+        <p>{props.message}</p>
         <button onClick={props.onClose}>Accept</button>
       </div>
     </div>
@@ -136,6 +137,7 @@ function Form() {
 
   const loading = useSelector((state) => state.loading);
   const temperaments = useSelector((state) => state.temperaments);
+  const newDog = useSelector((state) => state.newDog);
 
   const [input, setInput] = useState({
     name: "",
@@ -193,12 +195,32 @@ function Form() {
     });
   };
 
+  useEffect(() => {
+    if (typeof newDog !== "string") {
+      setInput({
+        name: "",
+        min_weight: "",
+        max_weight: "",
+        min_height: "",
+        max_height: "",
+        min_life_span: "",
+        max_life_span: "",
+        temperament: [],
+        temperaments: [],
+      });
+    }
+  }, [newDog]);
+
   return loading ? (
     <Loading />
   ) : (
     <div className={styles.globalContainer}>
       <Navbar />
-      {modal && <Modal onClose={closeModal} />}
+      {typeof newDog === "string"
+        ? modal && <Modal message={newDog} onClose={closeModal} />
+        : modal && (
+            <Modal message="Dog Created Successfully!" onClose={closeModal} />
+          )}
       <div className={styles.container}>
         <div className={styles.formContainer}>
           <div className={styles.headerContainer}>
@@ -381,7 +403,6 @@ function Form() {
                     })
                   );
                   showModal();
-                  clearInputs();
                 }}
               >
                 Create new dog

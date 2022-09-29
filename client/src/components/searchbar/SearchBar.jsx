@@ -22,8 +22,7 @@ const DropDown = (props) => {
   const [title, setTitle] = useState("Filter By Temperament");
   const theme = useSelector((state) => state.theme);
 
-  let styles = stylesLight;
-  theme ? (styles = stylesLight) : (styles = stylesDark);
+  let styles = theme ? stylesLight : stylesDark;
 
   return (
     <div className={styles.dropdown}>

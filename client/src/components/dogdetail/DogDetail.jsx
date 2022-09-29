@@ -65,8 +65,8 @@ function DogDetail() {
   ) : (
     <div className={styles.globalContainer}>
       <Navbar />
-      {dog === "D" ? (
-        <Message message="Not Available!" />
+      {typeof dog === "string" ? (
+        <Message message={dog} />
       ) : (
         <div className={styles.container}>
           <div className={styles.dogContainer}>
